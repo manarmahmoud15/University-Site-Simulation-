@@ -1,0 +1,131 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@* @model List<Instructor> *@
+
+@*  @using PagedList.Mvc;
+@using PagedList; *@
+@using Microsoft.AspNetCore.Http
+
+@using X.PagedList.Mvc.Core
+
+ @model X.PagedList.IPagedList<Instructor>
+@{
+    ViewData["Title"] = "ShowAll";
+   
+}
+
+<h1>ShowAll Instructors</h1>
+
+<a href="/Instructor/New" class="btn btn-success"> New</a>
+
+<div class="row mt-3">
+    <div class="col-md-6">
+        <form class="Form Form-control d-flex" asp-action="ShowAll"  > 
+            <input name="Search" type="search" placeholder="Search" class="form-control "/>
+            <button class="btn btn-success ms-5" type="submit" value="Search"> Search</button>
+        </form>
+
+    </div>
+    <div class="col-md-6  ">
+        <a class="btn btn-primary" asp-action="ShowAll" style="text-decoration:none"> Back To List</a>
+    </div>
+
+</div>
+<table class="table table-bordered table-hover mt-5">
+    <tr class="table-dark">
+        <th>Id</th>
+        <th>Name</th>
+        <th>More Details</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th></th>
+
+    </tr>
+    @foreach (Instructor item in Model)
+    {
+        <tr>
+          
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>
+                <button class="btn btn-info">
+                    <a href="/instructor/Details/@item.Id" style="text-decoration: none;color: white;">Go To Details </a>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-success">
+                    <a href="/instructor/Edit/@item.Id" style="text-decoration:none;color: white;">Edit</a>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-info delete-link" data-id="@item.Id">
+                    <a href="/instructor/Delete" style="text-decoration:none ;color: white; ">Delete</a>
+                </button>
+            </td>
+            <td> <a href=""></a> </td>
+        </tr>
+    }
+
+</table>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.delete-link').click(function (e) {
+                e.preventDefault();
+                var insID = $(this).data('id');
+                var confirmation = confirm('Are you sure you want to delete this instructor?');
+                if (confirmation) {
+                    window.location.href = '/Instructor/Delete/' + insID; 
+                }
+            });
+        });
+    </script>
+}
+
+@Html.PagedListPager(Model, PageNumber => Url.Action("ShowAll",
+        "Instructor", new { PageNumber, Search = ViewBag.Search }))
+
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .pagination a {
+            color: #007bff;
+            padding: 8px 12px;
+            text-decoration: none;
+            border: 1px solid #007bff;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+
+            .pagination a:hover {
+                background-color: #007bff;
+                color: #fff;
+
+            }
+
+        .pagination .disabled {
+            color: #ddd;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .pagination .active {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+            padding: 8px 12px;
+            text-decoration: none;
+            border: 1px solid #007bff;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+</style>
+

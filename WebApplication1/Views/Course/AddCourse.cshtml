@@ -1,0 +1,62 @@
+﻿@model Course
+
+@{
+    ViewData["Title"] = "AddCourse";
+    SelectList DeptItems =
+    new SelectList(ViewBag.DeptList , "Id" , "Name");
+  
+}
+
+<h1>AddCourse</h1>
+
+
+<form asp-action="SaveNewCourse" asp-controller="Course" method="post">
+    <div asp-validation-summary="All">
+
+    </div>
+
+    <div>
+        <label asp-for="Name"></label>
+        <input class="form form-control" asp-for="Name"/> 
+        <span asp-validation-for="Name" style="color:red"></span>
+    </div>
+   
+    <div>
+        <label asp-for="Degree"></label>
+        <input class="form form-control" asp-for="Degree" />    
+        <span asp-validation-for="Degree" style="color:red"></span>
+
+
+    </div>
+    <div>
+        <label asp-for="MinDegree"></label>
+        <input class="form form-control" asp-for="MinDegree" />
+        <span asp-validation-for="MinDegree" style="color:red"></span>
+
+    </div>
+    <div>
+        <label asp-for="Hours"></label>
+        <input class="form form-control" asp-for="Hours" />
+        <span asp-validation-for="Hours" style="color:red"></span>
+
+    </div>
+    <div>
+        <label asp-for="dept_id"></label>
+     @*    <input class="form form-control" asp-for="dept_id" /> *@
+        <select asp-for="dept_id"
+                asp-items="DeptItems"
+                class="form form-control">
+            <option value="0">---Select Department--</option>
+        </select>
+
+    </div>
+
+
+    <input type="submit" value="Create" class="btn btn-info"/>
+
+</form>
+
+<a asp-action="index" asp-controller="Course"> Back To List </a>
+
+
+<partial name="_ValidationScriptsPartial" />

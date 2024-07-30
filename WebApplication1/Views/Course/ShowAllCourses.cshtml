@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "ShowAllCourses";
+    Layout = "_AdvLayout";
+
+}
+
+<h1>ShowAllCourses</h1>
+
+@model List<Course>
+<a asp-action="AddCourse" asp-controller="Course"> Add Course</a>
+<table class="table table-bordered table-hover">
+    <tr class="table-dark">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Details</th>
+    </tr>
+
+        @foreach(Course item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.dept_id</td>
+                <td>
+                    <button class="btn btn-info">
+                        <a asp-action="Details" asp-route-id ="@item.Id" style="text-decoration:none">Go To Details</a>
+                    </button>
+                </td>
+            </tr>
+        }
+</table>
+

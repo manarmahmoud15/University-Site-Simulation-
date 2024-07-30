@@ -1,0 +1,52 @@
+﻿@model Instructor
+@{
+    ViewData["Title"] = "Details";
+    
+}
+
+<h1>Details</h1>
+
+<div class="card container mt-3" style="width:400px"> 
+    <img src="~/Images/@Model.ImgURL" style="width:100%"  class="card-img-top"alt="card Image"/>
+    <div class="card-body">
+        <h4 class="card-title " style=" display: flex; justify-content: center; margin: 0 auto;">
+            @Model.Name
+        </h4> 
+        <p class="card-text" style=" display: flex; justify-content: center; margin: 0 auto;">
+            <ul> ID : @Model.Id</ul>
+            <ul> Salary :  @Model.Salary </ul>
+            <ul>Address : @Model.Address </ul>
+            <ul> Course ID : @Model.Crs_id  </ul>
+            <ul> Department ID : @Model.dept_id  </ul>
+        </p>
+         
+    </div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success" style="width: 50%; display: flex; justify-content: center; margin: 0 auto;">Edit </a>
+
+</div>
+<button class="btn btn-info"><a href="/Instructor/ShowAll" style="text-decoration: none">Back To List </a></button>
+@* 
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Address</th>
+        <th>ImgURL</th>
+        <th>Crs_id</th>
+        <th>Dept_id</th>
+        <th>Back To List</th>
+    </tr>
+    <tr>
+        <td>@Model.Id</td>
+        <td>@Model.Name</td>
+        <td>@Model.Salary</td>
+        <td>@Model.Address</td>
+        <td><img src="~/Images/@Model.ImgURL" style="width:100px"/></td>
+        <td>@Model.Crs_id</td>
+        <td>@Model.dept_id</td>
+        <td><button class="btn btn-info"><a href="/Instructor/ShowAll" style="text-decoration: none">Back To List </a></button></td>
+    </tr>
+
+</table>
+ *@

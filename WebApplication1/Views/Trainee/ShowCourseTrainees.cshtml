@@ -1,0 +1,66 @@
+﻿@model List<TraineeCourseResultViewModel>
+@{
+    ViewData["Title"] = "ShowCourseTrainees";
+}
+
+<h1>ShowCourseTrainees</h1>
+
+@{
+    string PreviousCourseName = null;
+}
+
+@foreach (var Item in Model)
+{
+
+    @if (Item.CourseName != PreviousCourseName)
+    {
+        <h4 class="card-title " style=" display: flex; justify-content: center; margin: 0 auto;">
+            <span style="color: @Item.Color"> Course Name : @Item.CourseName</span>
+        </h4>
+        <div class="card container mt-3" style="width:400px">
+            <div class="card-body">
+                <p class="card-text" style=" display: flex; justify-content: center; margin: 0 auto;">
+                    <li style="color: @Item.Color">@Item.TraineeName</li>
+                    <ul style="color: @Item.Color">The Degree : @Item.Degree</ul>
+                </p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card container mt-3" style="width:400px">
+            <div class="card-body">
+                <p class="card-text" style=" display: flex; justify-content: center; margin: 0 auto;">
+
+                    <li style="color: @Item.Color">@Item.TraineeName</li>
+                    <ul style="color: @Item.Color">The Degree : @Item.Degree</ul>
+                </p>
+            </div>
+
+        </div>
+   }
+ PreviousCourseName = Item.CourseName;
+
+ 
+    
+}
+@* @foreach (var Item in Model)
+{
+    if (Item.CourseName != PreviousCourseName)
+    {
+
+        <span style="color: @Item.Color">@Item.CourseName</span>
+        <li style ="color: @Item.Color">@Item.TraineeName</li>
+        <ul style="color: @Item.Color">The Degree : @Item.Degree</ul>
+
+    }
+    else
+    {
+        <li style="color: @Item.Color"> @Item.TraineeName</li>
+        <ul style ="color: @Item.Color"> The Degree : @Item.Degree</ul>
+
+    }
+    PreviousCourseName = Item.CourseName;
+
+} *@
+

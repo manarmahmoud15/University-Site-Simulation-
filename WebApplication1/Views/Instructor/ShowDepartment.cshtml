@@ -1,0 +1,41 @@
+﻿@model List<Department>
+@{
+    ViewData["Title"] = "ShowDepartment";
+}
+
+<h1>ShowDepatment</h1>
+
+<select name="dept_id" id="dept_id"
+        class="form-check form-control"
+        onchange="GetCourse()">
+    
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>
+
+<ul id="course">
+
+</ul>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    function GetCourse() {
+      //  console.log("kjkj")
+        $("#course").empty();
+        var DeptID = $("#dept_id").val();
+       // console.log(DeptID);
+       $.ajax ({
+            url: "/instructor/ShowCoursesPerDepartment?deptid=" + DeptID,
+           success :function (result)
+           {
+               
+               //console.log(result);
+               for (let course of result) {
+                   $("#course").append( "<li>" + course.name + "</li>");
+               }
+           }
+       })
+
+    }
+</script>

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "DetailsOfCourse";
+}
+
+<h1>DetailsOfCourse</h1>
+@model Course
+
+<table class="table table-bordered table-hover">
+    <tr class="table-dark">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <td>Degree</td>
+        <td>MinDegree</td>
+        <td>Hours</td>
+     @*    <td>courseResult</td>
+        <td>instructor</td> *@
+        <th>Back To List</th>
+    </tr>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Name</td>
+            <td>@Model.Degree</td>
+            <td>@Model.MinDegree</td>
+            <td>@Model.Hours</td>
+@*             <td>@Model.Crs</td>
+            <td>@Model.Instructors</td> *@
+            <td>@Model.dept_id</td>
+            <td>
+                <button class="btn btn-info">
+                    <a asp-action="index" style="text-decoration:none">Go To List</a>
+                </button>
+            </td>
+        </tr>
+    
+</table>

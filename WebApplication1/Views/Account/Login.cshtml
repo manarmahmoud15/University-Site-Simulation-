@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    //Layout = null;
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+</head>
+@model UserViewModel 
+
+
+<div class="container">
+    <main role="main" class="pb-3 mt-5">
+        <form class="form form-control" asp-action="Login" asp-controller="Account" method="post">
+            <div>
+                <label asp-for="UserName"> </label>
+                <input asp-for="UserName" class="form form-control" />
+            </div>
+            <div>
+                <label asp-for="Password"> </label>
+                <input asp-for="Password" class="form form-control" />
+            </div>
+            <input type="submit" class="btn btn-danger" />
+        </form>
+    </main>
+</div>
+
+
